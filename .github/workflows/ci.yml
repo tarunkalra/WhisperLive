@@ -72,9 +72,7 @@ jobs:
       - name: Install Homebrew
         run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       - name: Install system dependencies
-        run: |
-          brew update
-          brew install ffmpeg portaudio
+        run: brew install ffmpeg portaudio
       
       - name: Install Python dependencies
         run: |
