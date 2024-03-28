@@ -39,6 +39,7 @@ jobs:
       
       - name: Install Python dependencies
         run: |
+          echo $PATH
           python -m pip install --upgrade pip
           pip install -r requirements/server.txt --extra-index-url https://download.pytorch.org/whl/cpu
           pip install -r requirements/client.txt
@@ -54,15 +55,13 @@ jobs:
         python-version: [3.8, 3.9, '3.10', 3.11]
     steps:
       - uses: actions/checkout@v2
-      - name: Install Homebrew
-        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
       - name: Install system dependencies
         run: |
           #Delete the syminks created by github image before running for homebrew
-          find /usr/local/bin -lname '*/Library/Frameworks/Python.framework/*' -delete
+          #find /usr/local/bin -lname '*/Library/Frameworks/Python.framework/*' -delete
           brew install ffmpeg portaudio
-          brew install --overwrite python@${{ matrix.python-version }}
+          brew reinstall --overwrite python@${{ matrix.python-version }}
       
       - name: Install Python dependencies
         run: |
