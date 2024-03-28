@@ -16,7 +16,7 @@ except Exception:
     pass
 
 logging.basicConfig(level=logging.INFO)
-
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 class ClientManager:
     def __init__(self, max_clients=4, max_connection_time=600):

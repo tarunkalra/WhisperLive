@@ -39,6 +39,7 @@ jobs:
       
       - name: Install Python dependencies
         run: |
+          echo $PATH
           python -m pip install --upgrade pip
           pip install -r requirements/server.txt --extra-index-url https://download.pytorch.org/whl/cpu
           pip install -r requirements/client.txt
@@ -54,7 +55,6 @@ jobs:
         python-version: [3.8, 3.9, '3.10', 3.11]
     steps:
       - uses: actions/checkout@v2
-      
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -69,13 +69,14 @@ jobs:
           key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('requirements/server.txt', 'requirements/client.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-${{ matrix.python-version }}-
-      
       - name: Install system dependencies
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg portaudio19-dev
+        run: |
+          #Delete the syminks created by github image before running for homebrew
+          #find /usr/local/bin -lname '*/Library/Frameworks/Python.framework/*' -delete
+          brew install ffmpeg portaudio
       
       - name: Install Python dependencies
         run: |
-          python -m pip install --upgrade pip
           pip install -r requirements/server.txt --extra-index-url https://download.pytorch.org/whl/cpu
           pip install -r requirements/client.txt
       
