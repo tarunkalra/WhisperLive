@@ -71,9 +71,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-${{ matrix.python-version }}-
       - name: Install system dependencies
-        run: |
-          brew install --overwrite ffmpeg
-          brew install --overwrite portaudio
+        run: brew install ffmpeg portaudio python@${{ matrix.python-version }}
       
       - name: Install Python dependencies
         run: |
