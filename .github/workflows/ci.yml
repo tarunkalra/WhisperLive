@@ -69,9 +69,12 @@ jobs:
           key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('requirements/server.txt', 'requirements/client.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-${{ matrix.python-version }}-
-      
+      - name: Install Homebrew
+        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       - name: Install system dependencies
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg portaudio19-dev
+        run: |
+          brew update
+          brew install ffmpeg portaudio
       
       - name: Install Python dependencies
         run: |
