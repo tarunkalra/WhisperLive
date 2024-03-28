@@ -66,9 +66,9 @@ jobs:
       
       - name: Install Python dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements/server.txt --extra-index-url https://download.pytorch.org/whl/cpu
-          pip install -r requirements/client.txt
+          python{{ matrix.python-version }} -m pip install --upgrade pip
+          pip${{ matrix.python-version }} install -r requirements/server.txt --extra-index-url https://download.pytorch.org/whl/cpu
+          pip${{ matrix.python-version }} install -r requirements/client.txt
       
       - name: Run tests
         run: |
