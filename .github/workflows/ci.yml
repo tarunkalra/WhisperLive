@@ -73,7 +73,7 @@ jobs:
       - name: Run tests
         run: |
           echo "Running tests with Python ${{ matrix.python-version }}"
-          python -m unittest discover -s tests
+          python${{ matrix.python-version }} -m unittest discover -s tests
   
   check-code-format-ubuntu:
     runs-on: ubuntu-22.04
