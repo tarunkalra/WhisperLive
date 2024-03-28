@@ -21,10 +21,10 @@ from subprocess import CalledProcessError, run
 from typing import Dict, Iterable, List, Optional, TextIO, Tuple, Union
 
 import kaldialign
-import numpy as np
 import soundfile
 import torch
 import torch.nn.functional as F
+import numpy as np
 
 Pathlike = Union[str, Path]
 
