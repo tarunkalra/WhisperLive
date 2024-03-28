@@ -10,7 +10,10 @@ import uuid
 import time
 import ffmpeg
 import whisper_live.utils as utils
+import os
 
+#For Mac-OS issue
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 class Client:
     """
