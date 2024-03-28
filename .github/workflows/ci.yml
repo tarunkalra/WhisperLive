@@ -70,7 +70,10 @@ jobs:
           python --version
           python3 --version
           pip --version
+          pip${{ matrix.python-version }} --version
           python${{ matrix.python-version }} --version
+          ls -l /usr/local/bin/python*
+          echo $PATH
           pip${{ matrix.python-version }} install -r requirements/server.txt --extra-index-url https://download.pytorch.org/whl/cpu
           pip${{ matrix.python-version }} install -r requirements/client.txt
       
