@@ -61,25 +61,16 @@ jobs:
           #Delete the syminks created by github image before running for homebrew
           #find /usr/local/bin -lname '*/Library/Frameworks/Python.framework/*' -delete
           brew install ffmpeg portaudio
-          brew reinstall --overwrite python@${{ matrix.python-version }}
       
       - name: Install Python dependencies
         run: |
-          brew list | grep python
-          python --version
-          python3 --version
-          pip --version
-          pip${{ matrix.python-version }} --version
-          python${{ matrix.python-version }} --version
-          ls -l /usr/local/bin/python*
-          echo $PATH
-          pip${{ matrix.python-version }} install -r requirements/server.txt --extra-index-url https://download.pytorch.org/whl/cpu
-          pip${{ matrix.python-version }} install -r requirements/client.txt
+          pip install -r requirements/server.txt --extra-index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements/client.txt
       
       - name: Run tests
         run: |
           echo "Running tests with Python ${{ matrix.python-version }}"
-          python${{ matrix.python-version }} -m unittest discover -s tests
+          python -m unittest discover -s tests
   
   check-code-format-ubuntu:
     runs-on: ubuntu-22.04
