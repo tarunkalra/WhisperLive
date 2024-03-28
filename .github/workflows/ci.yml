@@ -59,6 +59,8 @@ jobs:
 
       - name: Install system dependencies
         run: |
+          #Delete the syminks created by github image before running for homebrew
+          find /usr/local/bin -lname '*/Library/Frameworks/Python.framework/*' -delete
           brew install ffmpeg portaudio
           brew install --overwrite python@${{ matrix.python-version }}
       
